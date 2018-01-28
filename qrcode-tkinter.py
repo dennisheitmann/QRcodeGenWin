@@ -13,6 +13,9 @@ import time
 import slugify
 import win32clipboard
 
+startcode = 'https://github.com/dennisheitmann/QRcodeGenWin/'
+barstring = startcode
+
 class qrcodeApp(tkinter.Tk):
     def __init__(self,parent):
         tkinter.Tk.__init__(self,parent)
@@ -21,12 +24,12 @@ class qrcodeApp(tkinter.Tk):
     def initialize(self):
         pass
 
-def makeQrcode(barstring='www.dennisheitmann.de'):
+def makeQrcode(barstring=startcode):
     qr = qrcode.QRCode(version=None, error_correction=qrcode.constants.ERROR_CORRECT_Q, box_size=8, border=2)
     qr.add_data(barstring)
     qr.make(fit=True)
     qrimage = qr.make_image()
-    if barstring != 'www.dennisheitmann.de':
+    if barstring != startcode:
         time_now = time.strftime('%Y%m%d-%H%M%S_')
         file_name = str(time_now) + slugify.slugify(barstring) + "_qr.png"
         try:
@@ -45,8 +48,11 @@ def evaluate(event=None):
         image = makeQrcode(str(app.entry.get()))
         qrcode_bild.configure(image=image)
         qrcode_bild.image = image
+        barstring = str(app.entry.get())
+        qrcode_datalabel.config(text = barstring)
+        app.entry.delete(0, tkinter.END)
     except:
-        pass
+        raise
 
 def send_to_clipboard(data):
     output = io.BytesIO()
@@ -66,8 +72,10 @@ if __name__ == "__main__":
     app.entry.pack()
     button = tkinter.Button(app, text=u"Absenden!", command=evaluate)
     button.pack()
-    image = makeQrcode()
+    image = makeQrcode(barstring)
     qrcode_bild = tkinter.Label(app, image=image)
     qrcode_bild.pack()
+    qrcode_datalabel = tkinter.Label(app, text=barstring)
+    qrcode_datalabel.pack()
     app.mainloop()
     
