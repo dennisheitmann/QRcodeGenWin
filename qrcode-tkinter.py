@@ -52,7 +52,7 @@ def evaluate(event=None):
         qrcode_datalabel.config(text = barstring)
         app.entry.delete(0, tkinter.END)
     except:
-        raise
+        pass
 
 def send_to_clipboard(data):
     output = io.BytesIO()
