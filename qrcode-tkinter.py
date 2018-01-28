@@ -11,7 +11,9 @@ from PIL import ImageTk
 import io
 import time
 import slugify
-import win32clipboard
+import sys
+if sys.platform == 'win32':
+    import win32clipboard
 
 startcode = 'https://github.com/dennisheitmann/QRcodeGenWin/'
 barstring = startcode
@@ -37,7 +39,7 @@ def makeQrcode(barstring=startcode):
         except:
             pass
         try:
-            send_to_clipboard(qrimage)
+            send_to_win32_clipboard(qrimage)
         except:
             pass
     qrimageBild = ImageTk.PhotoImage(qrimage)
@@ -54,7 +56,7 @@ def evaluate(event=None):
     except:
         pass
 
-def send_to_clipboard(data):
+def send_to_win32_clipboard(data):
     output = io.BytesIO()
     data.convert('RGB').save(output, 'BMP')
     data = output.getvalue()[14:]
