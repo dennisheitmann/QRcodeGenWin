@@ -4,10 +4,10 @@ Simple QRcode Generator Tool for Windows
 ## Dependencies:
 - Pillow
 - qrcode
-- unicode_slugify
+- python-slugify, unicode_slugify
 - pywin32 or (https://github.com/mhammond/pywin32)
 
-1) `pip3 install Pillow qrcode unicode_slugify pywin32`
+1) `pip3 install Pillow qrcode python-slugify unicode_slugify pywin32`
 2) in your PYTHONDIR: `python Scripts/pywin32_postinstall.py -install`
 
 ## Build as Windows-EXE (using pyinstaller):
