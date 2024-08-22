@@ -12,6 +12,7 @@ Simple QRcode Generator Tool for Windows
 
 ## Build as Windows-EXE (using pyinstaller):
 - http://www.pyinstaller.org/
+
 Please use a virtual environment to create the app, otherwise all libraries installed on the system will be bundled into the application.
 
 `pyinstaller -F --noconsole qrcode-tkinter.py`
