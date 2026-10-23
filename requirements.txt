@@ -2,7 +2,7 @@ altgraph==0.17.5
 colorama==0.4.6
 packaging==26.2
 pefile==2024.8.26
-pillow==12.3.0
+pillow==13.0.0
 pyinstaller==6.21.0
 pyinstaller-hooks-contrib==2026.6
 python-slugify==8.0.4
